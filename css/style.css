@@ -220,3 +220,24 @@ header img {
     border: 3px solid whitesmoke;
 }
 
+.gif-1 img{
+    position: absolute;
+    z-index: 3;
+    height: 400px;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+.gif-2 img{
+    position: absolute;
+    z-index: 3;
+    height: 400px;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+}
+

@@ -25,6 +25,7 @@ const records = document.querySelector('#record')
 document.querySelector('#play').addEventListener('click', function () {
 
     mainGrid.innerHTML = "";
+    document.querySelector('.gif-1').classList.add('none')
     // ogni volta che clicco play inizializzo a zero record 
     counter = 0;
     records.textContent = counter;
@@ -60,6 +61,7 @@ btnMode.addEventListener('click', function(){
         mainGrid.classList.remove('bg-greenlight')
 
     }
+    
 })
 
 // FUNCTION -----------------------------------------------------
@@ -94,12 +96,15 @@ let counter = 0;
 
 function generateSquare(number) {
     const newSquare = document.createElement('div');
+    const newSquares = document.querySelectorAll('div.square')
 
     newSquare.classList.add('square');
     newSquare.innerHTML = `<span>${number}</span>`;
 
+  
+
     // Gestione del click su ogni qudrato, aggiunge classe blue ,allert e incrementa counter
-    newSquare.addEventListener('click', function handleClick() {
+    newSquare.addEventListener('click', function () {
      
         this.classList.add('bg-white');
         console.log('hai cliccato il', number)
@@ -120,7 +125,7 @@ function generateSquare(number) {
             if (numLoser === number){
                 alert('hai perso , il tuo record è di ' + (counter - 1))
                 newSquare.classList.add('bg-red');
-                newSquare.removeEventListener('click', handleClick);
+                document.querySelector('.gif-1').classList.remove('none')
 
             }
             
