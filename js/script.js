@@ -7,7 +7,16 @@
 // - con difficoltà 1 => 100 caselle, con un numero compreso tra 1 e 100, divise in 10 caselle per 10 righe;
 // - con difficoltà 2 => 81 caselle, con un numero compreso tra 1 e 81, divise in 9 caselle per 9 righe;
 // - con difficoltà 3 => 49 caselle, con un numero compreso tra 1 e 49, divise in 7 caselle per 7 righe;
-
+// ----------------------------------------------------------------------------------------------------------------------------------
+// Il computer deve generare 16 numeri casuali nello stesso range della difficoltà prescelta:le bombe. 
+// Attenzione: nella stessa cella può essere posizionata al massimo una bomba, 
+// perciò nell’array delle bombe non potranno esserci due numeri uguali.
+// In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati 
+// - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina. 
+// Altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.La partita termina 
+// quando il giocatore clicca su una bomba o quando raggiunge il numero massimo possibile di numeri consentiti 
+// (ovvero quando ha rivelato tutte le celle che non sono bombe).
+// -----------------------------------------------------------------------------------------------------------------------------------
 
 // crare il bottone bigbang l'inizio di tutto 
 
@@ -24,7 +33,7 @@ document.querySelector('#play').addEventListener('click', function () {
 
     difficultyLevelGrid();
     difficultyLevel();
-
+    console.log(random);
 });
 
 // creare bottore dark/light mode 
@@ -52,6 +61,30 @@ btnMode.addEventListener('click', function(){
 })
 
 // FUNCTION -----------------------------------------------------
+function logicGame(){
+// creare un array con 16 numeri casuali ,che non ci siano doppioni
+const numBomb = [];
+
+for (let i = 0 ; i < 16 ; i ++){
+    
+}
+// se l'utente clicca una casella ,e il numero della casella è uguale al numero presente nell'array allora ha perso
+// altrimenti può continuare a giocare 
+
+
+
+
+
+}
+
+
+
+
+
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+  }
+
 
 // Funzione che genera un quadrato e incementa di 1 il record
 // number -> numero che rappresenta il quadrato
@@ -82,28 +115,35 @@ function generateSquare(number) {
 }
 
 // generare funzione che ad ogni livello cambia il numero di quadrati
+// e includo che il numero random che deve uscire ad ogni livello 
+let random;
 function difficultyLevelGrid() {
     // richiamare elementi che servono per la condizione 
     const level = document.querySelector('#livello').value;
     const mainGrid = document.querySelector('.grid');
     let numGrids = 100;
+    random = getRndInteger(1, 100);
    
     // aumenta i quadrati in base al level
+    // e definisce random ad ogni level 
   
        if (level === 'hard') {
 
         numGrids = 81;
+        random = getRndInteger(1, 81);
 
       } else if (level === 'crazy') {
 
         numGrids = 49;
+        random = getRndInteger(1, 49);
+
       } 
 
       for (let i = 1; i <= numGrids; i++) {
         const newSquare = generateSquare(i);
         mainGrid.append(newSquare);
     }
-
+    
 }
 
 // generare funzione che ad ogni livello selezionato applica una 
