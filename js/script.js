@@ -21,7 +21,8 @@
 // crare il bottone bigbang l'inizio di tutto 
 
 const mainGrid = document.querySelector('.grid');
-const records = document.querySelector('#record')
+const records = document.querySelector('#record');
+const recordWord = document.querySelector('#record-word');
 document.querySelector('#play').addEventListener('click', function () {
 
     mainGrid.innerHTML = "";
@@ -34,10 +35,11 @@ document.querySelector('#play').addEventListener('click', function () {
 
     difficultyLevelGrid();
     difficultyLevel();
-    // logicGame();
     console.log(random);
-    
+   
 });
+
+
 
 // creare bottore dark/light mode 
 const btnMode = document.querySelector('.btn')
@@ -64,7 +66,7 @@ btnMode.addEventListener('click', function(){
     
 })
 
-// FUNCTION -----------------------------------------------------
+// FUNCTION -------------------------------------------------------------------------------------------------------------
 // funzione che da un array di 16 numeri casuali diversi tra loro 
 // min-->numero minimo da generare (incluso)
 // max-->numero massimo da generare (incluso)
@@ -93,15 +95,14 @@ function getRndInteger(min, max) {
 // return newsquare---> elemento del dom che rappresenta un quadrato
 // counter-->variabile da incrementare al click di newsquare 
 let counter = 0;
+let counterWord = 0;
 
 function generateSquare(number) {
     const newSquare = document.createElement('div');
-    const newSquares = document.querySelectorAll('div.square')
-
+    
+    
     newSquare.classList.add('square');
     newSquare.innerHTML = `<span>${number}</span>`;
-
-  
 
     // Gestione del click su ogni qudrato, aggiunge classe blue ,allert e incrementa counter
     newSquare.addEventListener('click', function () {
@@ -109,10 +110,16 @@ function generateSquare(number) {
         this.classList.add('bg-white');
         console.log('hai cliccato il', number)
   
-         // Incrementa il contatore e aggiorna il contenuto di #record
+        // Incrementa il contatore e aggiorna il contenuto di #record , 
+        //  se il record della partita supera il record migliore allora si aggiorna
 
          counter++;
          records.textContent = counter;
+         
+         if (counter > counterWord){
+         counterWord = counter
+         recordWord.textContent = counterWord;
+         }
 
         //  LOGICA DI GIOCO
 
@@ -167,6 +174,7 @@ function difficultyLevelGrid() {
     }
     
 }
+
 
 // generare funzione che ad ogni livello selezionato applica una 
 // classe di dimensione differente hai quadrati

@@ -124,6 +124,14 @@ header img {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: transparent;
+    
+}
+.square:hover{
+    background-image: url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOXkzdmhhcHMwbjJuYnFsNjY3bzhzMjZmNnExazhtZWZxZWFldWlxeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3osxYCsLd9qgsgqpwI/giphy.gif);
+    background-size: cover;
+    background-position: center;
+    background-size: 200%;
     
 }
 
@@ -223,9 +231,9 @@ header img {
 .gif-1 img{
     position: absolute;
     z-index: 3;
-    height: 400px;
-    width: 400px;
-    top: 50%;
+    height: 500px;
+    width: 600px;
+    top: 58%;
     left: 50%;
     transform: translate(-50%, -50%);
     
@@ -239,5 +247,8 @@ header img {
     left: 50%;
     transform: translate(-50%, -50%);
     
+}
+p , label{
+    font-family: "Rubik Gemstones", system-ui;
 }
 
