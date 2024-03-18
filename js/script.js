@@ -33,7 +33,9 @@ document.querySelector('#play').addEventListener('click', function () {
 
     difficultyLevelGrid();
     difficultyLevel();
+    // logicGame();
     console.log(random);
+    
 });
 
 // creare bottore dark/light mode 
@@ -61,28 +63,26 @@ btnMode.addEventListener('click', function(){
 })
 
 // FUNCTION -----------------------------------------------------
-function logicGame(){
-// creare un array con 16 numeri casuali ,che non ci siano doppioni
-const numBomb = [];
-
-for (let i = 0 ; i < 16 ; i ++){
-    
-}
-// se l'utente clicca una casella ,e il numero della casella è uguale al numero presente nell'array allora ha perso
-// altrimenti può continuare a giocare 
-
-
-
-
-
-}
-
-
-
-
-
+// funzione che da un array di 16 numeri casuali diversi tra loro 
+// min-->numero minimo da generare (incluso)
+// max-->numero massimo da generare (incluso)
+// numBomb--> array di 16 numeri generati 
 function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) ) + min;
+
+    const numBomb = [];
+    
+    // generare numero per 16 volte con condizione che non ci devono essere duplicati 
+    for (let i = 0 ; i < 16 ; i ++){
+        let num = Math.floor(Math.random() * (max - min + 1) ) + min    
+    
+        if (!numBomb.includes(num)){
+            
+            numBomb.push(num)
+
+        }
+     
+    }
+    return numBomb;
   }
 
 
@@ -99,7 +99,7 @@ function generateSquare(number) {
     newSquare.innerHTML = `<span>${number}</span>`;
 
     // Gestione del click su ogni qudrato, aggiunge classe blue ,allert e incrementa counter
-    newSquare.addEventListener('click', function () {
+    newSquare.addEventListener('click', function handleClick() {
      
         this.classList.add('bg-white');
         console.log('hai cliccato il', number)
@@ -108,6 +108,23 @@ function generateSquare(number) {
 
          counter++;
          records.textContent = counter;
+
+        //  LOGICA DI GIOCO
+
+        // se l'utente clicca una casella ,e il numero della casella è uguale al numero presente nell'array allora ha perso
+
+        // altrimenti può continuare a giocare
+
+        for(let i = 0 ; i < random.length ; i++){
+            let numLoser = random[i];
+            if (numLoser === number){
+                alert('hai perso , il tuo record è di ' + (counter - 1))
+                newSquare.classList.add('bg-red');
+                newSquare.removeEventListener('click', handleClick);
+
+            }
+            
+        }
         
     });
 
@@ -170,4 +187,8 @@ function difficultyLevel() {
     }
 
 }
+
+
+
+  
 
